@@ -1,0 +1,5 @@
+*.tfstate
+*.tfvars
+*_override.tf
+*_override.tf.json
+crash.log
