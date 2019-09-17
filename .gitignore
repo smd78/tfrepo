@@ -3,3 +3,6 @@
 *_override.tf
 *_override.tf.json
 crash.log
+*.tfstate.backup
+*.tfplan
+/cheat_codes/*
