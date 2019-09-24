@@ -4,7 +4,7 @@ terraform {
   backend "local" {}
 
   provider "aws" {
-    region = "eu-west-1"
+    region = "ØP-west-1"
   }
 }
 
