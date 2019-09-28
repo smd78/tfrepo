@@ -8,3 +8,4 @@ crash.log
 /cheat_codes/*
 .DS_Store
 *.terraform
+*.lock.info

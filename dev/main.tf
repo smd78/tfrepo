@@ -32,6 +32,11 @@ module "s3-www" {
 
 
 #cloudfront
+module "cloudfront" {
+  source = "../modules/cloudfront"
+  www_domain_name = "${var.www_domain_name}"
+  website_endpoint = "${module.s3-www.website_endpoint}"
+}
 
 #iam
 
