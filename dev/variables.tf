@@ -5,9 +5,7 @@ variable "commonTags" {
 
 variable "cidrBlock" {}
 
-variable "region" {
-  type = "string"
-}
+
 
 variable "publicSubnets" {
   type = "list"
@@ -24,3 +22,6 @@ variable "availabilityZones" {
 variable "dns" {
   type = "list"
 }
+#s3wwww
+
+variable "www_domain_name" {}

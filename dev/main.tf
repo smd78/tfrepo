@@ -2,22 +2,14 @@
 
 terraform {
   backend "local" {}
-
   provider "aws" {
-    region = "${var.region}"
-  }
+    region = "eu-west-1"
 }
 
-### Simple Notification Service
-resource "aws_sns_topic" "dev-sns" {
-  name         = "dev${lower(var.commonTags["environment"])}Alert"
-  display_name = "dev${lower(var.commonTags["environment"])}"  
 }
-resource "aws_sns_topic" "inDevelopment-sns" {
-  name         = "inDevelopment${lower(var.commonTags["environment"])}Alert"
-  display_name = "inDevelopment${lower(var.commonTags["environment"])}"  
-}
-### Simple Notification Service
+
+
+
 module "vpc" {
   source            = "../modules/vpc/"
   envName           = "${upper(var.commonTags["environment"])}"
@@ -28,3 +20,23 @@ module "vpc" {
   dns               = "${var.dns}"
   commonTags        = "${var.commonTags}"
 }
+
+#s3
+
+module "s3-www" {
+  source = "../modules/s3-www"
+  envName           = "${upper(var.commonTags["environment"])}"
+  bucketName = "${var.www_domain_name}"
+  commonTags = "${var.commonTags}"
+}
+
+
+#cloudfront
+
+#iam
+
+#route53
+
+#cert manager
+
+#file upload to s3
