@@ -1,4 +1,4 @@
-resource "aws_cloudfront_distribution" "stuDevsite" {
+resource "aws_cloudfront_distribution" "Devsite" {
     origin {
         custom_origin_config {
       // These are all the defaults.
@@ -35,12 +35,19 @@ resource "aws_cloudfront_distribution" "stuDevsite" {
       }
     }
   }
+  #aliases = ["${var.www_domain_name}"] requires a cert to be created for smdale
+
     restrictions {
     geo_restriction {
       restriction_type = "none"
     }
   }
-
+/*
+viewer_certificate {
+    acm_certificate_arn = "${aws_acm_certificate.certificate.arn}"
+    ssl_support_method  = "sni-only"
+  } enable once a cert is loaded into cert mgr
+*/
    viewer_certificate {
     cloudfront_default_certificate = true
   }

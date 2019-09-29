@@ -8,8 +8,6 @@ terraform {
 
 }
 
-
-
 module "vpc" {
   source            = "../modules/vpc/"
   envName           = "${upper(var.commonTags["environment"])}"
@@ -22,14 +20,12 @@ module "vpc" {
 }
 
 #s3
-
 module "s3-www" {
   source = "../modules/s3-www"
   envName           = "${upper(var.commonTags["environment"])}"
   bucketName = "${var.www_domain_name}"
   commonTags = "${var.commonTags}"
 }
-
 
 #cloudfront
 module "cloudfront" {
@@ -41,6 +37,15 @@ module "cloudfront" {
 #iam
 
 #route53
+module "r53" {
+  source = "../modules/r53"
+  root_domain_name = "${var.root_domain_name}"
+  www_domain_name = "${var.www_domain_name}"
+  r53AliasForDomainName = "${module.cloudfront.domainName}"
+  r53AliasForHostedZone = "${module.cloudfront.zoneId}"
+  
+}
+
 
 #cert manager
 
