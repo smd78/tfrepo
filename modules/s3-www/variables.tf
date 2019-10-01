@@ -1,6 +1,7 @@
 variable "bucketName" {}
+
 variable "commonTags" {
-    type = "map"
+  type = "map"
 }
 
 variable "envName" {}
