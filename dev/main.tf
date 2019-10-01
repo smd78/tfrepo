@@ -1,7 +1,11 @@
 ###Terraform config
 
 terraform {
-  backend "local" {}
+  backend "s3" {
+    bucket = "stuterraformstate" 
+    key    = "terraform.tfstate"
+    region = "eu-west-1"
+  }
 
   provider "aws" {
     region = "eu-west-1"
