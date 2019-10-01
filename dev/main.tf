@@ -63,3 +63,16 @@ resource "aws_acm_certificate" "certificate" {
   validation_method = "DNS"
   subject_alternative_names = ["${var.root_domain_name}"]
 }
+
+module "cfCloudwatch" {
+  source = "../modules/cloudwatchAlarm"
+  alarmActionsEnabled = "true"
+  topicArn = "${aws_sns_topic.dev-sns.arn}"
+  cloudfrontDistribution = "${module.cloudfront.cfDistributionId}"
+  commonTags = "${var.commonTags}"
+
+}
+resource "aws_sns_topic" "dev-sns" {
+  name = "dev${lower(var.commonTags["environment"])}Alert"
+  display_name = "dev${lower(var.commonTags["environment"])}"
+}
