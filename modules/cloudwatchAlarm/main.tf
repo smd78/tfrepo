@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_metric_alarm" "cloudfront-4xx-Error-Percentage-cwAlarm" {
   alarm_name          = "${upper(var.commonTags["environment"])}-CloudFront-4xx-Error-Percentage"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = "3"
+  evaluation_periods  = "5"
   metric_name         = "4xxErrorRate"
   namespace           = "AWS/CloudFront"
   period              = "60"
@@ -22,7 +22,7 @@ resource "aws_cloudwatch_metric_alarm" "cloudfront-4xx-Error-Percentage-cwAlarm"
 resource "aws_cloudwatch_metric_alarm" "cloudfront-5xx-Error-Percentage-cwAlarm" {
   alarm_name          = "${upper(var.commonTags["environment"])}-CloudFront-5xx-Error-Percentage"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = "3"
+  evaluation_periods  = "5"
   metric_name         = "5xxErrorRate"
   namespace           = "AWS/CloudFront"
   period              = "60"
