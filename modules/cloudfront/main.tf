@@ -1,17 +1,17 @@
 resource "aws_cloudfront_distribution" "Devsite" {
   origin {
     custom_origin_config {
-      // These are all the defaults.
+      // defaults.
       http_port              = "80"
       https_port             = "443"
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
     }
 
-    // Here we're using our S3 bucket's URL!
+    // S3 bucket's URL!
     domain_name = "${var.website_endpoint}"
 
-    // This can be any name to identify this origin.
+    // any name to identify this origin.
     origin_id = "${var.www_domain_name}"
   }
 
@@ -24,7 +24,7 @@ resource "aws_cloudfront_distribution" "Devsite" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
 
-    // This needs to match the `origin_id` above.
+    // needs to match the `origin_id` above.
     target_origin_id = "${var.www_domain_name}"
     min_ttl          = 0
     default_ttl      = 86400
