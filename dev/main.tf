@@ -43,9 +43,11 @@ module "cloudfront" {
   acmCertificate   = "${aws_acm_certificate.certificate.arn}"
   www_domain_name  = "${var.www_domain_name}"
   website_endpoint = "${module.s3-www.website_endpoint}"
+  rootDomain       = "${var.rootDomainName}"
 }
 
 #iam
+
 
 #route53
 module "r53" {
@@ -55,6 +57,7 @@ module "r53" {
   r53AliasForDomainName = "${module.cloudfront.domainName}"
   r53AliasForHostedZone = "${module.cloudfront.zoneId}"
 }
+
 
 #cert manager
 resource "aws_acm_certificate" "certificate" {
